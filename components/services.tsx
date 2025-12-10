@@ -1,0 +1,84 @@
+"use client"
+
+import Link from "next/link"
+import { FileCheck, Database, Handshake, Globe, ArrowRight } from "lucide-react"
+
+const services = [
+  {
+    icon: FileCheck,
+    title: "Анализ брокерской деятельности",
+    description: "Полный анализ действий брокера и выявление нарушений в работе с вашими средствами",
+  },
+  {
+    icon: Database,
+    title: "Сбор доказательной базы",
+    description: "Профессиональный сбор и систематизация всех необходимых доказательств для вашего дела",
+  },
+  {
+    icon: Handshake,
+    title: "Досудебное урегулирование",
+    description: "Эффективные переговоры и решение конфликтов без судебных разбирательств",
+  },
+  {
+    icon: Globe,
+    title: "Международное сопровождение",
+    description: "Работа с международными регуляторами и финансовыми органами по всему миру",
+  },
+]
+
+export default function Services() {
+  return (
+    <section
+      className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      style={{ backgroundColor: "#f0f4f8" }}
+    >
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-14">
+          <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-gray-200 shadow-sm mb-4">
+            <span className="w-2 h-2 bg-accent rounded-full"></span>
+            <span className="text-sm font-medium text-accent">Наши услуги</span>
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground text-balance">
+            Юридические решения
+          </h2>
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-lg">
+            Комплексный подход к защите ваших финансовых интересов
+          </p>
+        </div>
+
+        {/* Services Grid - Упростил стили карточек */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {services.map((service, index) => {
+            const Icon = service.icon
+            return (
+              <div
+                key={index}
+                className="group p-6 lg:p-8 rounded-2xl bg-white border border-gray-200 shadow-soft card-hover"
+              >
+                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-accent group-hover:scale-105 transition-all duration-300">
+                  <Icon size={26} className="text-primary group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="font-semibold text-foreground mb-3 text-lg group-hover:text-accent transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground rounded-xl font-medium shadow-soft hover:shadow-soft-lg btn-glow transition-all duration-300"
+          >
+            Все услуги
+            <ArrowRight size={18} />
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
