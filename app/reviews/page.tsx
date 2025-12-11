@@ -1,8 +1,8 @@
 "use client"
 
-import { Star } from "lucide-react"
+import { Star, Play } from "lucide-react"
 import Link from "next/link"
-import { useEffect, useRef } from "react"
+import { useState, useRef } from "react"
 
 const videoReviews = [
   { id: 1, title: "Видеоотзыв клиента" },
@@ -15,6 +15,59 @@ const videoReviews = [
   { id: 8, title: "Видеоотзыв клиента" },
   { id: 9, title: "Видеоотзыв клиента" },
 ]
+
+function VideoCard({ id, title }: { id: number; title: string }) {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const handlePlay = () => {
+    if (videoRef.current) {
+      setIsPlaying(true)
+      videoRef.current.muted = false
+      videoRef.current.play()
+    }
+  }
+
+  const handleVideoClick = () => {
+    if (videoRef.current && isPlaying) {
+      if (videoRef.current.paused) {
+        videoRef.current.play()
+      } else {
+        videoRef.current.pause()
+      }
+    }
+  }
+
+  return (
+    <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-border shadow-md bg-black group">
+      <video
+        ref={videoRef}
+        preload="metadata"
+        playsInline
+        controls={isPlaying}
+        className="w-full h-full object-cover"
+        onClick={handleVideoClick}
+        onEnded={() => setIsPlaying(false)}
+      >
+        {/* #t=0.1 загружает первый кадр как превью */}
+        <source src={`/videos/rew${id}.mp4#t=0.1`} type="video/mp4" />
+      </video>
+
+      {/* Кнопка Play поверх видео */}
+      {!isPlaying && (
+        <button
+          onClick={handlePlay}
+          className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors cursor-pointer"
+          aria-label={`Воспроизвести ${title}`}
+        >
+          <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+            <Play className="w-7 h-7 text-primary ml-1" fill="currentColor" />
+          </div>
+        </button>
+      )}
+    </div>
+  )
+}
 
 const textReviews = [
   {
@@ -38,46 +91,6 @@ const textReviews = [
 ]
 
 export default function ReviewsPage() {
-  const videoContainerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const preloadVideos = async () => {
-      if (videoContainerRef.current) {
-        const videos = videoContainerRef.current.querySelectorAll("video")
-
-        videos.forEach((video, index) => {
-          // Устанавливаем preload в auto
-          video.preload = "auto"
-
-          // Принудительно загружаем видео
-          video.load()
-
-          // Пытаемся начать буферизацию
-          const playPromise = video.play()
-          if (playPromise !== undefined) {
-            playPromise
-              .then(() => {
-                // Сразу ставим на паузу после начала загрузки
-                video.pause()
-                video.currentTime = 0
-              })
-              .catch(() => {
-                // Игнорируем ошибки autoplay
-              })
-          }
-        })
-      }
-    }
-
-    // Загружаем сразу
-    preloadVideos()
-
-    // И повторно через небольшую задержку для надежности
-    const timer = setTimeout(preloadVideos, 500)
-
-    return () => clearTimeout(timer)
-  }, [])
-
   return (
     <div className="w-full overflow-x-hidden">
       {/* Hero Section */}
@@ -113,23 +126,9 @@ export default function ReviewsPage() {
             <p className="text-muted-foreground mt-4">Наши клиенты делятся своим опытом</p>
           </div>
 
-          <div ref={videoContainerRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {videoReviews.map((video) => (
-              <div
-                key={video.id}
-                className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-border shadow-md bg-black"
-              >
-                <video
-                  controls
-                  preload="auto"
-                  playsInline
-                  muted
-                  className="w-full h-full object-cover"
-                  poster={`/videos/rew${video.id}.jpg`}
-                >
-                  <source src={`/videos/rew${video.id}.mp4`} type="video/mp4" />
-                </video>
-              </div>
+              <VideoCard key={video.id} id={video.id} title={video.title} />
             ))}
           </div>
         </div>
