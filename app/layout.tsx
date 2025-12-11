@@ -15,13 +15,9 @@ export const metadata: Metadata = {
   keywords: ["юридическая помощь", "возврат активов", "защита интересов", "брокер", "финансы", "криптовалюта", "Web3"],
   authors: [{ name: "Leader's Course" }],
   icons: {
-    icon: [
-      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon.png", sizes: "96x96", type: "image/png" },
-    ],
-    apple: "/favicon.png",
-    shortcut: "/favicon.png",
+    icon: "/logo-emblem.jpg",
+    shortcut: "/logo-emblem.jpg",
+    apple: "/logo-emblem.jpg",
   },
   openGraph: {
     title: "Leader's Course - Защита финансовых интересов",
@@ -63,6 +59,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
+      <head>
+        <link rel="icon" href="/logo-emblem.jpg" />
+        <link rel="apple-touch-icon" href="/logo-emblem.jpg" />
+      </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col`}>
         <Header />
         <main className="flex-1 pt-[104px]">{children}</main>

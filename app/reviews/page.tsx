@@ -2,7 +2,7 @@
 
 import { Star, Play } from "lucide-react"
 import Link from "next/link"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 
 const videoReviews = [
   { id: 1, title: "Видеоотзыв клиента" },
@@ -18,11 +18,32 @@ const videoReviews = [
 
 function VideoCard({ id, title }: { id: number; title: string }) {
   const [isPlaying, setIsPlaying] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (video) {
+      // Set currentTime to force browser to load frame
+      video.currentTime = 0.1
+
+      const handleLoadedData = () => {
+        setIsLoaded(true)
+      }
+
+      video.addEventListener("loadeddata", handleLoadedData)
+      video.load()
+
+      return () => {
+        video.removeEventListener("loadeddata", handleLoadedData)
+      }
+    }
+  }, [])
 
   const handlePlay = () => {
     if (videoRef.current) {
       setIsPlaying(true)
+      videoRef.current.currentTime = 0
       videoRef.current.muted = false
       videoRef.current.play()
     }
@@ -39,31 +60,38 @@ function VideoCard({ id, title }: { id: number; title: string }) {
   }
 
   return (
-    <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-border shadow-md bg-black group">
+    <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-border shadow-md bg-gray-900 group">
       <video
         ref={videoRef}
-        preload="metadata"
+        preload="auto"
         playsInline
+        muted
         controls={isPlaying}
         className="w-full h-full object-cover"
         onClick={handleVideoClick}
         onEnded={() => setIsPlaying(false)}
       >
-        {/* #t=0.1 загружает первый кадр как превью */}
-        <source src={`/videos/rew${id}.mp4#t=0.1`} type="video/mp4" />
+        <source src={`/videos/rew${id}.mp4`} type="video/mp4" />
       </video>
 
-      {/* Кнопка Play поверх видео */}
+      {/* Play button overlay - показываем когда не воспроизводится */}
       {!isPlaying && (
         <button
           onClick={handlePlay}
-          className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors cursor-pointer"
+          className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors cursor-pointer"
           aria-label={`Воспроизвести ${title}`}
         >
           <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
             <Play className="w-7 h-7 text-primary ml-1" fill="currentColor" />
           </div>
         </button>
+      )}
+
+      {/* Loading indicator */}
+      {!isLoaded && !isPlaying && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
+          <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+        </div>
       )}
     </div>
   )
