@@ -1,0 +1,16 @@
+# robots.txt for Leader's Course
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://leaders-course.com/sitemap.xml
+
+# Allow all search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Yandex
+Allow: /

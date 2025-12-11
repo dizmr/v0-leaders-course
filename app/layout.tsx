@@ -12,9 +12,42 @@ export const metadata: Metadata = {
   title: "Leader's Course - Защита финансовых интересов | Law & Order",
   description:
     "Юридическая помощь в возврате активов. Высокий стандарт защиты ваших финансовых интересов. Работаем с клиентами по всему миру.",
-  keywords: ["юридическая помощь", "возврат активов", "защита интересов", "брокер", "финансы"],
+  keywords: ["юридическая помощь", "возврат активов", "защита интересов", "брокер", "финансы", "криптовалюта", "Web3"],
   authors: [{ name: "Leader's Course" }],
-    generator: 'v0.app'
+  icons: {
+    icon: [
+      { url: "/favicon.jpg", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.jpg", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-96x96.jpg", sizes: "96x96", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+    shortcut: "/favicon.jpg",
+  },
+  openGraph: {
+    title: "Leader's Course - Защита финансовых интересов",
+    description: "Юридическая помощь в возврате активов. Работаем с клиентами по всему миру.",
+    url: "https://leaders-course.com",
+    siteName: "Leader's Course",
+    locale: "ru_RU",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Leader's Course - Защита финансовых интересов",
+    description: "Юридическая помощь в возврате активов. Работаем с клиентами по всему миру.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  generator: "v0.app",
 }
 
 export const viewport: Viewport = {
