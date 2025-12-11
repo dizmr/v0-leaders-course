@@ -16,12 +16,12 @@ export const metadata: Metadata = {
   authors: [{ name: "Leader's Course" }],
   icons: {
     icon: [
-      { url: "/favicon.jpg", sizes: "32x32", type: "image/png" },
-      { url: "/favicon.jpg", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-96x96.jpg", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon.png", sizes: "96x96", type: "image/png" },
     ],
-    apple: "/apple-icon.png",
-    shortcut: "/favicon.jpg",
+    apple: "/favicon.png",
+    shortcut: "/favicon.png",
   },
   openGraph: {
     title: "Leader's Course - Защита финансовых интересов",
