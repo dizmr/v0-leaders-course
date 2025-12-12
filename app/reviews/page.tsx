@@ -5,46 +5,50 @@ import Link from "next/link"
 import { useState, useRef, useEffect } from "react"
 
 const videoReviews = [
-  { id: 1, title: "Видеоотзыв клиента" },
-  { id: 2, title: "Видеоотзыв клиента" },
-  { id: 3, title: "Видеоотзыв клиента" },
-  { id: 4, title: "Видеоотзыв клиента" },
-  { id: 5, title: "Видеоотзыв клиента" },
-  { id: 6, title: "Видеоотзыв клиента" },
-  { id: 7, title: "Видеоотзыв клиента" },
-  { id: 8, title: "Видеоотзыв клиента" },
-  { id: 9, title: "Видеоотзыв клиента" },
+  { id: 1, title: "Видеоотзыв клиента", name: "Кристина" },
+  { id: 2, title: "Видеоотзыв клиента", name: "Елена" },
+  { id: 3, title: "Видеоотзыв клиента", name: "Оксана" },
+  { id: 4, title: "Видеоотзыв клиента", name: "Юлия" },
+  { id: 5, title: "Видеоотзыв клиента", name: "Виктор" },
+  { id: 6, title: "Видеоотзыв клиента", name: "Никита" },
+  { id: 7, title: "Видеоотзыв клиента", name: "Ирина" },
+  { id: 8, title: "Видеоотзыв клиента", name: "Ирина" },
+  { id: 9, title: "Видеоотзыв клиента", name: "Ксения" },
 ]
 
-function VideoCard({ id, title }: { id: number; title: string }) {
+function VideoCard({ id, title, name }: { id: number; title: string; name: string }) {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     const video = videoRef.current
     if (video) {
-      // Set currentTime to force browser to load frame
-      video.currentTime = 0.1
-
-      const handleLoadedData = () => {
-        setIsLoaded(true)
+      const handleCanPlay = () => {
+        console.log(`[v0] Video ${id} ready to play`)
+        setIsLoading(false)
       }
 
-      video.addEventListener("loadeddata", handleLoadedData)
-      video.load()
+      const handleLoadedMetadata = () => {
+        console.log(`[v0] Video ${id} metadata loaded`)
+        // Force load first frame
+        video.currentTime = 0.001
+      }
+
+      video.addEventListener("canplay", handleCanPlay)
+      video.addEventListener("loadedmetadata", handleLoadedMetadata)
 
       return () => {
-        video.removeEventListener("loadeddata", handleLoadedData)
+        video.removeEventListener("canplay", handleCanPlay)
+        video.removeEventListener("loadedmetadata", handleLoadedMetadata)
       }
     }
-  }, [])
+  }, [id])
 
   const handlePlay = () => {
     if (videoRef.current) {
       setIsPlaying(true)
       videoRef.current.currentTime = 0
-      videoRef.current.muted = false
       videoRef.current.play()
     }
   }
@@ -61,11 +65,12 @@ function VideoCard({ id, title }: { id: number; title: string }) {
 
   return (
     <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-border shadow-md bg-gray-900 group">
+      {/* Video element */}
       <video
         ref={videoRef}
-        preload="auto"
+        preload="metadata"
         playsInline
-        muted
+        muted={!isPlaying}
         controls={isPlaying}
         className="w-full h-full object-cover"
         onClick={handleVideoClick}
@@ -74,11 +79,16 @@ function VideoCard({ id, title }: { id: number; title: string }) {
         <source src={`/videos/rew${id}.mp4`} type="video/mp4" />
       </video>
 
-      {/* Play button overlay - показываем когда не воспроизводится */}
-      {!isPlaying && (
+      {/* Name badge */}
+      <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-lg text-sm font-medium shadow-lg">
+        {name}
+      </div>
+
+      {/* Play button overlay */}
+      {!isPlaying && !isLoading && (
         <button
           onClick={handlePlay}
-          className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors cursor-pointer"
+          className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors cursor-pointer z-10"
           aria-label={`Воспроизвести ${title}`}
         >
           <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
@@ -88,8 +98,8 @@ function VideoCard({ id, title }: { id: number; title: string }) {
       )}
 
       {/* Loading indicator */}
-      {!isLoaded && !isPlaying && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-900 z-20">
           <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
         </div>
       )}
@@ -156,7 +166,7 @@ export default function ReviewsPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {videoReviews.map((video) => (
-              <VideoCard key={video.id} id={video.id} title={video.title} />
+              <VideoCard key={video.id} id={video.id} title={video.title} name={video.name} />
             ))}
           </div>
         </div>
