@@ -8,12 +8,16 @@ import "./globals.css"
 
 const inter = Inter({ subsets: ["latin", "cyrillic"], weight: ["300", "400", "500", "600", "700"] })
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://trastenlaw.com"
+
 export const metadata: Metadata = {
-  title: "Leader's Course (Trastenlaw) - Защита финансовых интересов | Law & Order",
+  metadataBase: new URL(siteUrl),
+  title: "Trastenlaw (Leader's Course) - Защита финансовых интересов | Law & Order",
   description:
-    "Trastenlaw (Leader's Course) - Юридическая помощь в возврате активов. Высокий стандарт защиты ваших финансовых интересов. Работаем с клиентами по всему миру.",
+    "Trastenlaw - Юридическая помощь в возврате активов. Высокий стандарт защиты ваших финансовых интересов. Работаем с клиентами по всему миру.",
   keywords: [
     "trastenlaw",
+    "Trastenlaw",
     "юридическая помощь",
     "возврат активов",
     "защита интересов",
@@ -21,27 +25,26 @@ export const metadata: Metadata = {
     "финансы",
     "криптовалюта",
     "Web3",
-    "Trastenlaw",
     "лидерс курс",
     "Leaders Course",
   ],
-  authors: [{ name: "Leader's Course (Trastenlaw)" }],
+  authors: [{ name: "Trastenlaw" }],
   icons: {
-    icon: "/logo-emblem.jpg",
-    shortcut: "/logo-emblem.jpg",
-    apple: "/logo-emblem.jpg",
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
   },
   openGraph: {
-    title: "Leader's Course (Trastenlaw) - Защита финансовых интересов",
+    title: "Trastenlaw - Защита финансовых интересов",
     description: "Trastenlaw - Юридическая помощь в возврате активов. Работаем с клиентами по всему миру.",
-    url: "https://leaders-course.com",
-    siteName: "Leader's Course (Trastenlaw)",
+    url: siteUrl,
+    siteName: "Trastenlaw",
     locale: "ru_RU",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Leader's Course (Trastenlaw) - Защита финансовых интересов",
+    title: "Trastenlaw - Защита финансовых интересов",
     description: "Trastenlaw - Юридическая помощь в возврате активов. Работаем с клиентами по всему миру.",
   },
   robots: {
@@ -55,7 +58,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  generator: "v0.app",
+  alternates: {
+    canonical: siteUrl,
+  },
+    generator: 'v0.app'
 }
 
 export const viewport: Viewport = {
@@ -72,13 +78,9 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <head>
-        <link rel="icon" href="/logo-emblem.jpg" />
-        <link rel="apple-touch-icon" href="/logo-emblem.jpg" />
-        <meta
-          name="keywords"
-          content="trastenlaw, Trastenlaw, Leader's Course, лидерс курс, юридическая помощь, возврат активов"
-        />
-        <meta name="author" content="Trastenlaw (Leader's Course)" />
+        <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/logo.svg" />
+        <meta name="google-site-verification" content="your-google-verification-code" />
       </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col`}>
         <Header />

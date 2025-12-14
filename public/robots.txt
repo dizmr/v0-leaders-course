@@ -1,9 +1,9 @@
-# robots.txt for Leader's Course (Trastenlaw)
+# robots.txt for Trastenlaw
 User-agent: *
 Allow: /
 
-# Sitemap location (update with your actual domain)
-Sitemap: https://your-domain.vercel.app/sitemap.xml
+# Sitemap location
+Sitemap: https://trastenlaw.com/sitemap.xml
 
 # Allow all major search engines
 User-agent: Googlebot

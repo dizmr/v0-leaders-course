@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react"
+import { Mail, Phone, MapPin, Send, MessageCircle, ExternalLink } from "lucide-react"
 import { useState } from "react"
 import { submitContactForm } from "@/app/actions/submit-contact"
 
@@ -10,16 +10,19 @@ const offices = [
     city: "Вильнюс",
     country: "Литва",
     address: "Gedimino pr. 44A, LT-01110 Vilnius",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Gedimino+pr.+44A,+LT-01110+Vilnius,+Lithuania",
   },
   {
     city: "Дубай",
     country: "ОАЭ",
     address: "Levels 6 and 7, Central Park Towers (Offices Tower), DIFC, PO Box 9275, Dubai, UAE",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Central+Park+Towers+DIFC+Dubai+UAE",
   },
   {
     city: "Тель-Авив",
     country: "Израиль",
     address: "2 Weizmann St., Tel Aviv, Israel",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=2+Weizmann+St.+Tel+Aviv+Israel",
   },
 ]
 
@@ -39,11 +42,8 @@ export default function ContactPage() {
     setSubmitStatus("idle")
     setErrorMessage("")
 
-    console.log("[v0] Form submit started", formData)
-
     try {
       const result = await submitContactForm(formData)
-      console.log("[v0] Form submit result:", result)
 
       if (result.success) {
         setFormData({ name: "", email: "", phone: "", message: "" })
@@ -53,7 +53,6 @@ export default function ContactPage() {
         setSubmitStatus("error")
       }
     } catch (err: any) {
-      console.log("[v0] Form submit error:", err)
       setErrorMessage(err.message || "Ошибка при отправке")
       setSubmitStatus("error")
     } finally {
@@ -199,7 +198,9 @@ export default function ContactPage() {
                   </a>
 
                   <a
-                    href="#"
+                    href="https://wa.me/37063109782"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 hover:bg-accent/10 transition-colors group"
                   >
                     <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center group-hover:bg-accent transition-colors">
@@ -213,22 +214,29 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Offices */}
+              {/* Offices - Made clickable with Google Maps links */}
               <div className="bg-white p-6 lg:p-8 rounded-2xl border border-gray-200 shadow-soft">
                 <h3 className="text-xl font-semibold text-foreground mb-6">Наши офисы</h3>
                 <div className="space-y-4">
                   {offices.map((office, index) => (
-                    <div key={index} className="flex items-start gap-4 p-4 rounded-xl bg-gray-50">
-                      <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <MapPin size={18} className="text-accent" />
+                    <a
+                      key={index}
+                      href={office.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 hover:bg-accent/10 transition-colors group cursor-pointer"
+                    >
+                      <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-accent transition-colors">
+                        <MapPin size={18} className="text-accent group-hover:text-white" />
                       </div>
-                      <div>
-                        <p className="font-medium text-foreground">
+                      <div className="flex-1">
+                        <p className="font-medium text-foreground flex items-center gap-2">
                           {office.city}, {office.country}
+                          <ExternalLink size={14} className="text-muted-foreground group-hover:text-accent" />
                         </p>
                         <p className="text-sm text-muted-foreground">{office.address}</p>
                       </div>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </div>

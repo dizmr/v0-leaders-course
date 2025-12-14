@@ -2,7 +2,7 @@
 
 import { Star, Play } from "lucide-react"
 import Link from "next/link"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef } from "react"
 
 const videoReviews = [
   { id: 1, title: "Видеоотзыв клиента", name: "Кристина" },
@@ -18,90 +18,48 @@ const videoReviews = [
 
 function VideoCard({ id, title, name }: { id: number; title: string; name: string }) {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
   const videoRef = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (video) {
-      const handleCanPlay = () => {
-        console.log(`[v0] Video ${id} ready to play`)
-        setIsLoading(false)
-      }
-
-      const handleLoadedMetadata = () => {
-        console.log(`[v0] Video ${id} metadata loaded`)
-        // Force load first frame
-        video.currentTime = 0.001
-      }
-
-      video.addEventListener("canplay", handleCanPlay)
-      video.addEventListener("loadedmetadata", handleLoadedMetadata)
-
-      return () => {
-        video.removeEventListener("canplay", handleCanPlay)
-        video.removeEventListener("loadedmetadata", handleLoadedMetadata)
-      }
-    }
-  }, [id])
 
   const handlePlay = () => {
     if (videoRef.current) {
       setIsPlaying(true)
+      videoRef.current.muted = false
       videoRef.current.currentTime = 0
       videoRef.current.play()
     }
   }
 
-  const handleVideoClick = () => {
-    if (videoRef.current && isPlaying) {
-      if (videoRef.current.paused) {
-        videoRef.current.play()
-      } else {
-        videoRef.current.pause()
-      }
-    }
-  }
-
   return (
-    <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-border shadow-md bg-gray-900 group">
-      {/* Video element */}
+    <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-border shadow-md bg-black group">
       <video
         ref={videoRef}
-        preload="metadata"
+        preload="auto"
         playsInline
-        muted={!isPlaying}
+        muted
         controls={isPlaying}
         className="w-full h-full object-cover"
-        onClick={handleVideoClick}
         onEnded={() => setIsPlaying(false)}
+        onPause={() => !videoRef.current?.seeking && setIsPlaying(false)}
       >
         <source src={`/videos/rew${id}.mp4`} type="video/mp4" />
       </video>
 
       {/* Name badge */}
-      <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-lg text-sm font-medium shadow-lg">
+      <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-lg text-sm font-medium shadow-lg z-20">
         {name}
       </div>
 
-      {/* Play button overlay */}
-      {!isPlaying && !isLoading && (
+      {/* Play button overlay - always visible when not playing */}
+      {!isPlaying && (
         <button
           onClick={handlePlay}
-          className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors cursor-pointer z-10"
+          className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors cursor-pointer z-10"
           aria-label={`Воспроизвести ${title}`}
         >
           <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
             <Play className="w-7 h-7 text-primary ml-1" fill="currentColor" />
           </div>
         </button>
-      )}
-
-      {/* Loading indicator */}
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-900 z-20">
-          <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-        </div>
       )}
     </div>
   )
