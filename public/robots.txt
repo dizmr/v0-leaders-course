@@ -1,19 +1,5 @@
-# robots.txt for Trastenlaw
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
 
-# Sitemap location
 Sitemap: https://trastenlaw.com/sitemap.xml
-
-# Allow all major search engines
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Yandex
-Allow: /
-
-# Crawl-delay to be respectful
-Crawl-delay: 1

@@ -8,11 +8,14 @@ import "./globals.css"
 
 const inter = Inter({ subsets: ["latin", "cyrillic"], weight: ["300", "400", "500", "600", "700"] })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://trastenlaw.com"
+const siteUrl = "https://trastenlaw.com"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Trastenlaw (Leader's Course) - Защита финансовых интересов | Law & Order",
+  title: {
+    default: "Trastenlaw - Защита финансовых интересов | Юридическая помощь",
+    template: "%s | Trastenlaw",
+  },
   description:
     "Trastenlaw - Юридическая помощь в возврате активов. Высокий стандарт защиты ваших финансовых интересов. Работаем с клиентами по всему миру.",
   keywords: [
@@ -29,6 +32,8 @@ export const metadata: Metadata = {
     "Leaders Course",
   ],
   authors: [{ name: "Trastenlaw" }],
+  creator: "Trastenlaw",
+  publisher: "Trastenlaw",
   icons: {
     icon: "/logo.svg",
     shortcut: "/logo.svg",
@@ -60,6 +65,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteUrl,
+  },
+  verification: {
+    google: "your-google-verification-code",
   },
     generator: 'v0.app'
 }

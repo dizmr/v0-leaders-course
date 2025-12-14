@@ -2,55 +2,87 @@
 
 import { Star, Play } from "lucide-react"
 import Link from "next/link"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 
 const videoReviews = [
-  { id: 1, title: "Видеоотзыв клиента", name: "Кристина" },
-  { id: 2, title: "Видеоотзыв клиента", name: "Елена" },
-  { id: 3, title: "Видеоотзыв клиента", name: "Оксана" },
-  { id: 4, title: "Видеоотзыв клиента", name: "Юлия" },
-  { id: 5, title: "Видеоотзыв клиента", name: "Виктор" },
-  { id: 6, title: "Видеоотзыв клиента", name: "Никита" },
-  { id: 7, title: "Видеоотзыв клиента", name: "Ирина" },
-  { id: 8, title: "Видеоотзыв клиента", name: "Ирина" },
-  { id: 9, title: "Видеоотзыв клиента", name: "Ксения" },
+  { id: 1, title: "Видеоотзыв клиента", name: "Кристина", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/DAMLwLMpV1o0sjxz5ULlAC/public/videos/rew1.mp4" },
+  { id: 2, title: "Видеоотзыв клиента", name: "Елена", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/8R2qeWKO_GL7TX1zqgLc5r/public/videos/rew2.mp4" },
+  { id: 3, title: "Видеоотзыв клиента", name: "Оксана", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/6uCDWSQImhTr4W4Yu1ASvF/public/videos/rew3.mp4" },
+  { id: 4, title: "Видеоотзыв клиента", name: "Юлия", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/ULRVaNIJXA78khorbr5Z_S/public/videos/rew4.mp4" },
+  { id: 5, title: "Видеоотзыв клиента", name: "Виктор", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/mUL6OLA02dJz4BkELzsoES/public/videos/rew5.mp4" },
+  { id: 6, title: "Видеоотзыв клиента", name: "Никита", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/pu1mvm0gITNqpklQiYSD9g/public/videos/rew6.mp4" },
+  { id: 7, title: "Видеоотзыв клиента", name: "Ирина", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/iDY_SuVLeQW3iw1yIi97PN/public/videos/rew7.mp4" },
+  { id: 8, title: "Видеоотзыв клиента", name: "Ирина", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/PW0eqoKM1bUQ_vsEF1wuvM/public/videos/rew8.mp4" },
+  { id: 9, title: "Видеоотзыв клиента", name: "Ксения", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/zMBwn-KL5Wjwg6Yzx5IQnX/public/videos/rew9.mp4" },
 ]
 
-function VideoCard({ id, title, name }: { id: number; title: string; name: string }) {
+function VideoCard({ id, title, name, src }: { id: number; title: string; name: string; src: string }) {
   const [isPlaying, setIsPlaying] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [hasError, setHasError] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (video) {
+      video.load()
+    }
+  }, [])
 
   const handlePlay = () => {
     if (videoRef.current) {
       setIsPlaying(true)
       videoRef.current.muted = false
       videoRef.current.currentTime = 0
-      videoRef.current.play()
+      videoRef.current.play().catch(() => {
+        setHasError(true)
+        setIsPlaying(false)
+      })
+    }
+  }
+
+  const handleLoadedData = () => {
+    setIsLoaded(true)
+    if (videoRef.current && !isPlaying) {
+      videoRef.current.currentTime = 0.5
     }
   }
 
   return (
-    <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-border shadow-md bg-black group">
+    <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-border shadow-md bg-gray-900 group">
+      {!isLoaded && !hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-800">
+          <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+        </div>
+      )}
+
+      {hasError && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-800 text-white/70 p-4 text-center">
+          <p className="text-sm mb-2">Видео недоступно</p>
+          <p className="text-xs">Обратитесь к администратору</p>
+        </div>
+      )}
+
       <video
         ref={videoRef}
-        preload="auto"
+        preload="metadata"
         playsInline
         muted
         controls={isPlaying}
-        className="w-full h-full object-cover"
+        className={`w-full h-full object-cover ${!isLoaded ? "opacity-0" : "opacity-100"} transition-opacity`}
+        onLoadedData={handleLoadedData}
+        onError={() => setHasError(true)}
         onEnded={() => setIsPlaying(false)}
         onPause={() => !videoRef.current?.seeking && setIsPlaying(false)}
       >
-        <source src={`/videos/rew${id}.mp4`} type="video/mp4" />
+        <source src={src} type="video/mp4" />
       </video>
 
-      {/* Name badge */}
       <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-lg text-sm font-medium shadow-lg z-20">
         {name}
       </div>
 
-      {/* Play button overlay - always visible when not playing */}
-      {!isPlaying && (
+      {!isPlaying && isLoaded && !hasError && (
         <button
           onClick={handlePlay}
           className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors cursor-pointer z-10"
@@ -111,11 +143,10 @@ export default function ReviewsPage() {
       </section>
 
       {/* Video Reviews */}
-      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-background to-secondary/20" />
-        <div className="absolute top-20 left-10 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-
+      <section
+        className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+        style={{ backgroundColor: "#f0f4f8" }}
+      >
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12 lg:mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground">Видеоотзывы</h2>
@@ -124,18 +155,17 @@ export default function ReviewsPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {videoReviews.map((video) => (
-              <VideoCard key={video.id} id={video.id} title={video.title} name={video.name} />
+              <VideoCard key={video.id} id={video.id} title={video.title} name={video.name} src={video.src} />
             ))}
           </div>
         </div>
       </section>
 
       {/* Text Reviews */}
-      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-background to-secondary/20" />
-        <div className="absolute top-0 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-
+      <section
+        className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+        style={{ backgroundColor: "#f0f4f8" }}
+      >
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12 lg:mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground">Текстовые отзывы</h2>
@@ -143,10 +173,7 @@ export default function ReviewsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {textReviews.map((review, index) => (
-              <div
-                key={index}
-                className="p-8 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-soft card-hover"
-              >
+              <div key={index} className="p-8 rounded-2xl bg-white border border-gray-200 shadow-md">
                 <div className="flex gap-1 mb-4">
                   {[...Array(review.rating)].map((_, i) => (
                     <Star key={i} size={18} className="text-accent fill-accent" />
@@ -164,11 +191,7 @@ export default function ReviewsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-background to-secondary/20" />
-        <div className="absolute top-10 left-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-
+      <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: "#f0f4f8" }}>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">Станьте следующей историей успеха</h2>
           <p className="text-lg text-muted-foreground mb-8">Свяжитесь с нами для бесплатной консультации</p>
