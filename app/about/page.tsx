@@ -80,6 +80,7 @@ export default function AboutPage() {
             <p className="text-lg lg:text-xl text-foreground leading-relaxed">
               <strong>Leader's Course — международная компания с многолетним юридическим опытом в кибербезопасности. 
 С 2023 года она является дочерней структурой  (Financial Action Task Force) — межправительственной организации, основанной в 1989 году по инициативе G7.
+                </strong>
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
