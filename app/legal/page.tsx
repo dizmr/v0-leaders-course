@@ -1,6 +1,6 @@
 "use client"
 
-import { Download, Shield, Scale, Award, FileText } from "lucide-react"
+import { Download, Shield, Scale, Award, FileText, Globe } from "lucide-react"
 
 const documents = [
   {
@@ -30,6 +30,15 @@ const documents = [
     description: "Официальный сертификат регистрации компании",
     icon: Award,
     url: "https://5630c74c-516d-44bb-8d28-48474ce94c5e.filesusr.com/ugd/5a821e_252ec30c68804af2af29265a00a88b58.pdf",
+    isPdf: true,
+  },
+  {
+    id: 5,
+    title: "Партнерство с организацией FATF",
+    titleEn: "FATF Partnership Certificate",
+    description: "Сертификат партнерства с международной организацией FATF (Financial Action Task Force)",
+    icon: Globe,
+    url: "https://blobs.vusercontent.net/blob/Partnership%20document%20with%20FATF-Tc6XkgDIVb29CJ40mpeJtaPlIUD3Yd.pdf",
     isPdf: true,
   },
   {
