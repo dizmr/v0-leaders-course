@@ -48,7 +48,7 @@ export default function Header() {
               </a>
             </div>
             <span className="hidden md:inline text-primary-foreground/70 text-xs">
-              Gedimino pr. 44A, Vilnius, Литва
+              Levels 6 and 7, Central Park Towers (Offices Tower), DIFC, PO Box 9275, Dubai, UAE
             </span>
           </div>
         </div>
