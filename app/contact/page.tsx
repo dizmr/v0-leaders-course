@@ -180,7 +180,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Email</p>
-                      <p className="font-medium text-foreground">support@leaders-course.com</p>
+                      <p className="font-medium text-foreground">contact@leaders-course.ru</p>
                     </div>
                   </a>
 
