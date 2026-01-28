@@ -59,41 +59,33 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="overflow-hidden" style={{ backgroundColor: "#f0f4f8" }}>
+    <div className="w-full overflow-x-hidden">
       {/* Hero Section */}
-      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/city-skyline-night-professional.jpg')" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/85 to-accent/20" />
-        <div className="absolute top-20 right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-pulse" />
-
+      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-secondary/50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-50"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">Наши услуги</h1>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+          
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">Наши услуги</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Комплексный подход к защите ваших финансовых интересов. Мы предлагаем полный спектр юридических услуг.
           </p>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section
-        className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
-        style={{ backgroundColor: "#f0f4f8" }}
-      >
-        <div className="max-w-7xl mx-auto relative z-10">
+      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {services.map((service, index) => {
               const Icon = service.icon
               return (
                 <div
                   key={index}
-                  className="group p-6 lg:p-8 rounded-2xl bg-white border border-gray-200 shadow-soft card-hover"
+                  className="group p-6 lg:p-8 rounded-2xl bg-card border border-border shadow-soft card-hover"
                 >
                   <div className="flex items-start gap-5">
-                    <div className="w-14 h-14 lg:w-16 lg:h-16 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-accent group-hover:scale-105 transition-all duration-300">
-                      <Icon size={28} className="text-accent group-hover:text-white transition-colors" />
+                    <div className="w-14 h-14 lg:w-16 lg:h-16 bg-primary/5 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-accent group-hover:scale-105 transition-all duration-300">
+                      <Icon size={28} className="text-primary group-hover:text-accent-foreground transition-colors" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-lg lg:text-xl font-semibold text-foreground mb-3 group-hover:text-accent transition-colors">
@@ -104,7 +96,7 @@ export default function ServicesPage() {
                       </p>
                       <ul className="grid grid-cols-2 gap-2">
                         {service.features.map((feature, idx) => (
-                          <li key={idx} className="text-sm text-muted-foreground flex items-center gap-2">
+                          <li key={idx} className="text-sm text-foreground/70 flex items-center gap-2">
                             <span className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>
                             {feature}
                           </li>
@@ -120,13 +112,13 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: "#f0f4f8" }}>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary/5">
+        <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">Нужна помощь?</h2>
           <p className="text-lg text-muted-foreground mb-8">Свяжитесь с нами для бесплатной первичной консультации</p>
           <Link
             href="/contact"
-            className="inline-flex px-8 py-4 bg-accent text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:bg-accent/90 transition-all duration-300"
+            className="inline-flex px-8 py-4 bg-primary text-primary-foreground rounded-xl font-semibold shadow-soft hover:shadow-soft-lg btn-glow transition-all duration-300"
           >
             Связаться с нами
           </Link>
