@@ -106,7 +106,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-semibold text-foreground mb-2 text-sm">Email</h4>
                   <a href="mailto:support@leaders-course.com" className="text-xs text-accent hover:underline">
-                    support@leaders-course.com
+                    contact@leaders-course.ru
                   </a>
                 </div>
               </div>
