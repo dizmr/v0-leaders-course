@@ -36,7 +36,7 @@ export default function Header() {
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center gap-4 md:gap-6">
               <a
-                href="mailto:support@leaders-course.com"
+                href="mailto:contact@leaders-course.ru"
                 className="flex items-center gap-2 hover:text-accent transition-colors"
               >
                 <Mail size={14} />
