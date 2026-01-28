@@ -172,7 +172,7 @@ export default function ContactPage() {
                 <h3 className="text-xl font-semibold text-foreground mb-6">Быстрая связь</h3>
                 <div className="space-y-4">
                   <a
-                    href="mailto:support@leaders-course.com"
+                    href="mailto:contact@leaders-course.ru"
                     className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 hover:bg-accent/10 transition-colors group"
                   >
                     <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center group-hover:bg-accent transition-colors">
