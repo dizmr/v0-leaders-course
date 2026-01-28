@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X, Phone, Mail } from "lucide-react"
 
@@ -48,7 +47,7 @@ export default function Header() {
               </a>
             </div>
             <span className="hidden md:inline text-primary-foreground/70 text-xs">
-              Levels 6 and 7, Central Park Towers (Offices Tower), DIFC, PO Box 9275, Dubai, UAE
+              Gedimino pr. 44A, Vilnius, Литва
             </span>
           </div>
         </div>
@@ -63,14 +62,8 @@ export default function Header() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
-              <div className="w-10 h-10 rounded-lg overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-300">
-                <Image
-                  src="/logo-emblem.jpg"
-                  alt="Leader's Course Logo"
-                  width={40}
-                  height={40}
-                  className="w-full h-full object-contain"
-                />
+              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300">
+                <span className="text-primary-foreground font-bold text-sm">LC</span>
               </div>
               <div className="hidden sm:block">
                 <span className="font-semibold text-foreground text-base block leading-tight">Leader's Course</span>

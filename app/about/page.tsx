@@ -35,29 +35,19 @@ export default function AboutPage() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/modern-office-building-cityscape-professional-dark.jpg')" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/85 to-accent/20" />
-        <div className="absolute top-20 right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-pulse" />
-
+      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-secondary/30 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">О компании</h1>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">О компании</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Мы работаем на стыке права, технологий и финансов
           </p>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-card relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-        <div className="max-w-7xl mx-auto relative z-10">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-card border-y border-border">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
@@ -70,47 +60,38 @@ export default function AboutPage() {
       </section>
 
       {/* About Content */}
-      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-background to-secondary/20" />
-        <div className="absolute top-20 left-10 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-
-        <div className="max-w-4xl mx-auto relative z-10">
+      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
           <div className="space-y-6">
             <p className="text-lg lg:text-xl text-foreground leading-relaxed">
-              <strong>Leader's Course</strong> — международная компания с многолетним юридическим опытом в сфере кибербезопасности.
+              <strong>Leader's Course</strong> — это команда юридических экспертов, специализирующихся на возврате
+              активов, потерянных в результате действий недобросовестных брокеров, финансовых платформ и
+              псевдоинвестиций.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              С 2023 года она является дочерней структурой Financial Action Task Force (FATF) — межправительственной организации, основанной в 1989 году по инициативе стран G7. FATF разрабатывает мировые стандарты противодействия отмыванию преступных доходов и финансированию терроризма и осуществляет деятельность более чем в 38 странах, а также взаимодействует с двумя региональными организациями: Европейской комиссией и Советом сотрудничества арабских государств Персидского залива.
-
-В 2023 году, в связи с политическими обстоятельствами, Россия прекратила прямое участие в FATF, однако сохранила доступ к консультативной помощи и механизмам контроля. Именно поэтому Leader's Course стала официальным посредником в защите граждан в международных финансовых вопросах.
-
-В том же 2023 году власти Объединённых Арабских Эмиратов запустили национальную кампанию по борьбе с интернет-мошенничеством и махинациями в сфере криптовалют, уделяя особое внимание фальшивым инвестиционным проектам и онлайн-маркетплейсам. В ходе данной кампании было выявлено большое количество пострадавших граждан Российской Федерации. В связи с этим компания Leader's Course переехала в Дубай
+              Наша команда сопровождает проекты, связанные с международными платёжными системами, брокерской
+              деятельностью и цифровыми активами. Мы понимаем, как устроен глобальный финансовый ландшафт, и умеем
+              адаптироваться под требования быстро меняющейся среды.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Мы получили информацию о мошеннических брокерах, которые регистрировали компании и банковские счета в ОАЭ с целью уклонения от налогообложения, а также списки пострадавших соотечественников. Благодаря знанию менталитета, языка, норм и законодательства Российской Федерации мы успешно помогаем клиентам из США, Латвии, Эстонии, Нидерландов, Казахстана и других стран. Leader's Course имеет филиалы во многих государствах.
-
-Все международные вопросы решаются нами во взаимодействии с FATF как с материнской организацией, осуществляющей сбор и анализ финансовой информации для выявления незаконных финансовых потоков. Через посредников, таких как наша компания, реализуются выплаты пострадавшим — независимо от того, является ли заявитель физическим или юридическим лицом.
+              Юристы компании помогают запускать и легализовывать бизнес в сфере криптовалют, DeFi и Web3 — от первичной
+              консультации до полного сопровождения проекта под ключ. Мы оформляем документы, подбираем юрисдикции,
+              взаимодействуем с банками, регулирующими органами и комплаенс-службами.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Все вопросы на территории Российской Федерации решаются в соответствии с Федеральным законом РФ № 259-ФЗ от 31.07.2020 «О цифровых финансовых активах и цифровой валюте», а также № 161-ФЗ «О национальной платёжной системе». В России возбуждено более 700 уголовных дел по инвестиционным проектам, связанным с уклонением от уплаты налогов в особо крупных размерах. В 2025 году большинство таких дел завершилось поражением мошенников: суды обязали их уплатить налоги и вернуть средства вкладчикам. Однако многие компании не исполняют решения добровольно, особенно если они зарегистрированы за рубежом, поэтому взаимодействие с клиентами осуществляется в индивидуальном порядке.
-
-Мы, компания Leader's Course, обладая успешным портфелем юридической помощи, с 2025 года имеем возможность возвращать средства клиентам независимо от страны регистрации мошеннической компании.
+              Мы объединили опыт юристов, финансовых аналитиков и специалистов по международному праву, чтобы защищать
+              интересы тех, кто оказался в трудной ситуации.
             </p>
           </div>
         </div>
       </section>
 
       {/* Principles */}
-      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-background to-secondary/20" />
-        <div className="absolute top-10 left-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-
-        <div className="max-w-7xl mx-auto relative z-10">
+      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-secondary/30">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 lg:mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground">Наши принципы</h2>
           </div>
@@ -119,10 +100,7 @@ export default function AboutPage() {
             {principles.map((principle, index) => {
               const Icon = principle.icon
               return (
-                <div
-                  key={index}
-                  className="p-6 lg:p-8 rounded-xl bg-card/80 backdrop-blur-sm border border-border card-hover"
-                >
+                <div key={index} className="p-6 lg:p-8 rounded-xl bg-card border border-border card-hover">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
                       <Icon size={24} className="text-accent" />
@@ -140,15 +118,11 @@ export default function AboutPage() {
       </section>
 
       {/* Who We Help */}
-      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-background to-secondary/20" />
-        <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl -translate-y-1/2" />
-        <div className="absolute top-1/2 right-0 w-[350px] h-[350px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2" />
-
-        <div className="max-w-4xl mx-auto relative z-10">
+      <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-10 text-center">Кому мы помогаем</h2>
 
-          <div className="bg-card/80 backdrop-blur-sm rounded-2xl border border-border p-8 lg:p-10 shadow-soft">
+          <div className="bg-card rounded-2xl border border-border p-8 lg:p-10 shadow-soft">
             <ul className="space-y-4">
               {[
                 "Пострадавшим от брокеров-мошенников и офшорных схем",
@@ -171,12 +145,8 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-background to-secondary/20" />
-        <div className="absolute top-10 left-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-accent/5">
+        <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">Готовы помочь вам</h2>
           <p className="text-lg text-muted-foreground mb-8">Свяжитесь с нами для бесплатной консультации</p>
           <Link

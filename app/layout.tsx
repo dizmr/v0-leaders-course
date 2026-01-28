@@ -8,67 +8,12 @@ import "./globals.css"
 
 const inter = Inter({ subsets: ["latin", "cyrillic"], weight: ["300", "400", "500", "600", "700"] })
 
-const siteUrl = "https://trastenlaw.com"
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: "Trastenlaw - Защита финансовых интересов | Юридическая помощь",
-    template: "%s | Trastenlaw",
-  },
+  title: "Leader's Course - Защита финансовых интересов | Law & Order",
   description:
-    "Trastenlaw - Юридическая помощь в возврате активов. Высокий стандарт защиты ваших финансовых интересов. Работаем с клиентами по всему миру.",
-  keywords: [
-    "trastenlaw",
-    "Trastenlaw",
-    "юридическая помощь",
-    "возврат активов",
-    "защита интересов",
-    "брокер",
-    "финансы",
-    "криптовалюта",
-    "Web3",
-    "лидерс курс",
-    "Leaders Course",
-  ],
-  authors: [{ name: "Trastenlaw" }],
-  creator: "Trastenlaw",
-  publisher: "Trastenlaw",
-  icons: {
-    icon: "/logo.svg",
-    shortcut: "/logo.svg",
-    apple: "/logo.svg",
-  },
-  openGraph: {
-    title: "Trastenlaw - Защита финансовых интересов",
-    description: "Trastenlaw - Юридическая помощь в возврате активов. Работаем с клиентами по всему миру.",
-    url: siteUrl,
-    siteName: "Trastenlaw",
-    locale: "ru_RU",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Trastenlaw - Защита финансовых интересов",
-    description: "Trastenlaw - Юридическая помощь в возврате активов. Работаем с клиентами по всему миру.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  alternates: {
-    canonical: siteUrl,
-  },
-  verification: {
-    google: "your-google-verification-code",
-  },
+    "Юридическая помощь в возврате активов. Высокий стандарт защиты ваших финансовых интересов. Работаем с клиентами по всему миру.",
+  keywords: ["юридическая помощь", "возврат активов", "защита интересов", "брокер", "финансы"],
+  authors: [{ name: "Leader's Course" }],
     generator: 'v0.app'
 }
 
@@ -85,11 +30,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <head>
-        <link rel="icon" href="/logo.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/logo.svg" />
-        <meta name="google-site-verification" content="your-google-verification-code" />
-      </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col`}>
         <Header />
         <main className="flex-1 pt-[104px]">{children}</main>
