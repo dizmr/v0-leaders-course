@@ -40,7 +40,7 @@ export default function Header() {
                 className="flex items-center gap-2 hover:text-accent transition-colors"
               >
                 <Mail size={14} />
-                <span className="hidden sm:inline">support@leaders-course.com</span>
+                <span className="hidden sm:inline">contact@leaders-course.ru</span>
               </a>
               <a href="tel:+37060311904" className="flex items-center gap-2 hover:text-accent transition-colors">
                 <Phone size={14} />
