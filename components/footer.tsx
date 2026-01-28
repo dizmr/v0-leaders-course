@@ -121,7 +121,7 @@ export default function Footer() {
                 <li className="flex items-center gap-3">
                   <Mail size={20} className="text-accent flex-shrink-0" />
                   <a
-                    href="mailto:support@leaders-course.com"
+                    href="mailto:contact@leaders-course.ru"
                     className="text-white/70 hover:text-accent transition-colors"
                   >
                     contact@leaders-course.ru
