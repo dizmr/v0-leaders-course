@@ -124,7 +124,7 @@ export default function Footer() {
                     href="mailto:support@leaders-course.com"
                     className="text-white/70 hover:text-accent transition-colors"
                   >
-                    support@leaders-course.com
+                    contact@leaders-course.ru
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
