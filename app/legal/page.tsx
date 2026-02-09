@@ -47,7 +47,7 @@ const documents = [
     titleEn: "Заявка на обработку данных",
     description: "Форма для подачи заявки на обработку персональных данных",
     icon: FileText,
-    url: "https://docs.google.com/forms/d/e/1FAIpQLScBdLFIjHsogOwo6A_gBIpa9SKvpIA6je5Gnp7Cy0Fy7RrNXw/viewform",
+    url: "https://docs.google.com/forms/d/e/1FAIpQLSdLlWBB-01A_GNgv3J50coo7FqNhU0k1zfOgyY00YY9a7IaFw/viewform?usp=dialog",
     isForm: true,
   },
 ]
