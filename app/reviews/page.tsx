@@ -11,8 +11,8 @@ const videoReviews = [
   { id: 4, title: "Видеоотзыв клиента", name: "Юлия", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/ULRVaNIJXA78khorbr5Z_S/public/videos/rew4.mp4" },
   { id: 5, title: "Видеоотзыв клиента", name: "Виктор", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/mUL6OLA02dJz4BkELzsoES/public/videos/rew5.mp4" },
   { id: 6, title: "Видеоотзыв клиента", name: "Никита", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/pu1mvm0gITNqpklQiYSD9g/public/videos/rew6.mp4" },
-  { id: 7, title: "Видеоотзыв клиента", name: "Ирина", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/iDY_SuVLeQW3iw1yIi97PN/public/videos/rew7.mp4" },
-  { id: 8, title: "Видеоотзыв клиента", name: "Ирина", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/PW0eqoKM1bUQ_vsEF1wuvM/public/videos/rew8.mp4" },
+  { id: 7, title: "Видеоотзыв клиента", name: "Дмитрий", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/iDY_SuVLeQW3iw1yIi97PN/public/videos/rew7.mp4" },
+  { id: 8, title: "Видеоотзыв клиента", name: "Илона", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/PW0eqoKM1bUQ_vsEF1wuvM/public/videos/rew8.mp4" },
   { id: 9, title: "Видеоотзыв клиента", name: "Ксения", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_kix0cl1VfD5HN4Kvc9fQzSlik9oq/zMBwn-KL5Wjwg6Yzx5IQnX/public/videos/rew9.mp4" },
 ]
 
