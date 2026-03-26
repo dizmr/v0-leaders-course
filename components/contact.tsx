@@ -121,7 +121,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-semibold text-foreground mb-2 text-sm">WhatsApp</h4>
                   <p className="text-xs text-muted-foreground">
-                    +3 (706) 031-19-04
+                    +370 (6) 031-19-04
                     <br />
                     +3 (706) 310-97-82
                   </p>
