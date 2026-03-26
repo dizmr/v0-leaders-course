@@ -44,7 +44,7 @@ export default function Header() {
               </a>
               <a href="tel:+37060311904" className="flex items-center gap-2 hover:text-accent transition-colors">
                 <Phone size={14} />
-                <span>+3 (706) 031-19-04</span>
+                <span>+370 (6) 031-19-04</span>
               </a>
             </div>
             <span className="hidden md:inline text-primary-foreground/70 text-xs">
