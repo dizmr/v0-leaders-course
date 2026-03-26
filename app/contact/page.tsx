@@ -208,7 +208,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">WhatsApp</p>
-                      <p className="font-medium text-foreground">+3 (706) 310-97-82</p>
+                      <p className="font-medium text-foreground">+370 (6) 031-19-04</p>
                     </div>
                   </a>
                 </div>
