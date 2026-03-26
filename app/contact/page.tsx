@@ -193,7 +193,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Телефон</p>
-                      <p className="font-medium text-foreground">+3 (706) 031-19-04</p>
+                      <p className="font-medium text-foreground">+370 (6) 031-19-04</p>
                     </div>
                   </a>
 
